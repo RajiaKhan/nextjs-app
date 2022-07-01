@@ -1,82 +1,25 @@
 import { useState, useEffect } from "react";
-export default function index() {
-  const [contactInfo, setContactInfo] = useState({
-    Firstname: "",
-    Lastname: "",
-    email: "",
-    country: "",
-    streetAddress: "",
-    phonenumber: "",
-    Province: "",
-    zip: "",
-  });
-
-  const handleFirstnameInputChange = (event) => {
-    event.persist();
-    setContactInfo((values) => ({
-      ...values,
-      Firstname: event.target.value,
-    }));
+export default function form2() {
+  const [Firstname, setFirstname] = useState("");
+  const [Lastname, setLastname] = useState("");
+  const [email, setemail] = useState("");
+  const [Streetaddress, setStreetaddress] = useState("");
+  const [Country, setCountry] = useState("");
+  const [State, setState] = useState("");
+  const [Zip, setZip] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(Firstname, Lastname, email, Streetaddress, Country, State, Zip);
+    localStorage.setItem("item", JSON.stringify(Lastname));
+    localStorage.setItem("item1", JSON.stringify(Firstname));
+    localStorage.setItem("item2", JSON.stringify(email));
+    localStorage.setItem("item3", JSON.stringify(Streetaddress));
+    localStorage.setItem("item4", JSON.stringify(Country));
+    localStorage.setItem("item5", JSON.stringify(State));
+    localStorage.setItem("item6", JSON.stringify(Zip));
   };
-  const handleLastnameInputChange = (event) => {
-    event.persist();
-    setContactInfo((values) => ({
-      ...values,
-      Lastname: event.target.value,
-    }));
-  };
-  const handleemailInputChange = (event) => {
-    event.persist();
-    setContactInfo((values) => ({
-      ...values,
-      email: event.target.value,
-    }));
-  };
-  const handlestreetAddresslInputChange = (event) => {
-    event.persist();
-    setContactInfo((values) => ({
-      ...values,
-      streetAddress: event.target.value,
-    }));
-  };
-  const handlecountryInputChange = (event) => {
-    event.persist();
-    setContactInfo((values) => ({
-      ...values,
-      country: event.target.value,
-    }));
-  };
-  const handleprovinceInputChange = (event) => {
-    event.persist();
-    setContactInfo((values) => ({
-      ...values,
-      province: event.target.value,
-    }));
-  };
-  const handlezipInputChange = (event) => {
-    event.persist();
-    setContactInfo((values) => ({
-      ...values,
-      zip: event.target.value,
-    }));
-  };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(contactInfo);
-    setContactInfo({
-      Firstname: "",
-      Lastname: "",
-      email: "",
-      country: "",
-      streetAddress: "",
-      phonenumber: "",
-      Province: "",
-      zip: "",
-    });
-    localStorage.setItem("items", JSON.stringify(contactInfo));
-  };
-
   return (
+    
     <div>
       <form
         className="container mx-auto bg-white shadow rounded"
@@ -116,16 +59,13 @@ export default function index() {
                       First Name
                     </label>
                     <input
-                      onChange={handleFirstnameInputChange}
                       type="text"
                       name="firstName"
                       required
                       id="FirstName"
-                      value={contactInfo.Firstname}
-                      className="border border-gray-300 dark:border-gray-700 pl-3
-                    py-3 shadow-sm rounded text-sm focus:outline-none
-                    bg-transparent focus:border-indigo-700 text-gray-800
-                    dark:text-gray-100"
+                      value={Firstname}
+                      onChange={(event) => setFirstname(event.target.value)}
+                      className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none bg-transparent focus:border-indigo-700 text-gray-800 dark:text-gray-100"
                     />
                   </div>
                   <div className="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
@@ -139,8 +79,8 @@ export default function index() {
                       type="text"
                       id="LastName"
                       name="lastName"
-                      value={contactInfo.Lastname}
-                      onChange={handleLastnameInputChange}
+                      value={Lastname}
+                      onChange={(event) => setLastname(event.target.value)}
                       required
                       className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none bg-transparent focus:border-indigo-700 text-gray-800 dark:text-gray-100"
                     />
@@ -177,8 +117,8 @@ export default function index() {
                         required
                         className="w-full bg-transparent text-gray-800 dark:text-gray-100 focus:outline-none focus:border focus:border-indigo-700 font-normal py-3 flex items-center pl-16 text-sm border-gray-300 rounded border"
                         placeholder="example@gmail.com"
-                        value={contactInfo.email}
-                        onChange={handleemailInputChange}
+                        value={email}
+                        onChange={(event) => setemail(event.target.value)}
                       />
                     </div>
                   </div>
@@ -191,10 +131,10 @@ export default function index() {
                     </label>
                     <input
                       type="text"
+                      value={Streetaddress}
+                      onChange={(event) => setStreetaddress(event.target.value)}
                       id="StreetAddress"
                       name="streetAddress"
-                      value={contactInfo.streetAddress}
-                      onChange={handlestreetAddresslInputChange}
                       required
                       className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none bg-transparent focus:border-indigo-700 text-gray-800 dark:text-gray-100"
                     />
@@ -210,11 +150,11 @@ export default function index() {
                       type="text"
                       id="Country"
                       name="country"
+                      value={Country}
+                      onChange={(event) => setCountry(event.target.value)}
                       required
                       className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none bg-transparent focus:border-indigo-700 text-gray-800 dark:text-gray-100"
                       placeholder="California"
-                      value={contactInfo.country}
-                      onChange={handlecountryInputChange}
                     />
                   </div>
                 </div>
@@ -228,12 +168,12 @@ export default function index() {
                   <input
                     type="text"
                     id="State/Province"
+                    value={State}
+                    onChange={(event) => setState(event.target.value)}
                     name="state"
                     required
                     className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none bg-transparent focus:border-indigo-700 text-gray-800 dark:text-gray-100"
                     placeholder="California"
-                    value={contactInfo.province}
-                    onChange={handleprovinceInputChange}
                   />
                 </div>
                 <div className="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
@@ -262,11 +202,11 @@ export default function index() {
                   <input
                     type="text"
                     id="ZIP"
+                    value={Zip}
+                    onChange={(event) => setZip(event.target.value)}
                     name="zip"
                     className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none bg-transparent focus:border-indigo-700 text-gray-800 dark:text-gray-100"
                     placeholder="e.g 86745"
-                    value={contactInfo.zip}
-                    onChange={handlezipInputChange}
                   />
                 </div>
               </div>
@@ -285,24 +225,3 @@ export default function index() {
     </div>
   );
 }
-
-
-
-
-
-
-//import React from "react";
-
-///export default function index() {
-  //return (
-  //  <div>
-  //    <h1 className="text-3xl font-bold underline text-center text-gray-500"> NEXT JS APP</h1>
-  //    <p className="text-md text-center mt-3"> loremunde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa .</p>
-  //    <p className="text-md text-center mt-2"> loremunde omnis iste natus error sit voluptatem .</p>
- //   </div>
- // );
-// }
-
-// make another folder for pricing in the components folder
-// make a new page in the pages folder
-// import pricing from "../components/pricing";
