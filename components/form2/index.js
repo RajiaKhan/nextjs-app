@@ -19,7 +19,6 @@ export default function form2() {
     localStorage.setItem("item6", JSON.stringify(Zip));
   };
   return (
-    
     <div>
       <form
         className="container mx-auto bg-white shadow rounded"
